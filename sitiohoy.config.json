@@ -1,0 +1,36 @@
+{
+  "plan": "empresa",
+  "negocio": {
+    "nombre": "Tanos Burger",
+    "slug": "tanosburger",
+    "rubro": "comida-rapida",
+    "whatsapp": "3329404361",
+    "email": "contacto@tanosburger.com.ar",
+    "instagram": "@tanosburgers",
+    "dominio": "tanosburger.com.ar"
+  },
+  "diseno": {
+    "color_principal": "#FFA730",
+    "color_secundario": "#C80F2C",
+    "color_texto": "#1A1A1A",
+    "color_fondo": "#FFFFFF",
+    "estilo": "minimalista-moderno",
+    "tono": "informal"
+  },
+  "integraciones": {
+    "mercadopago": true,
+    "envia": true,
+    "resend": true,
+    "umami": true,
+    "whatsapp": true,
+    "formulario_contacto": true,
+    "cupones": true
+  },
+  "catalogo": {
+    "variantes": true,
+    "precio_min": 3000,
+    "precio_max": 23000
+  },
+  "modulo_actual": 0,
+  "estado": "iniciando"
+}

@@ -36,6 +36,13 @@ yarn-error.log*
 # vercel
 .vercel
 
+# sitiohoy
+proyecto-tracking.json
+.sitiohoy/
+
+# assets originales del cliente (se sirven desde Supabase Storage)
+/_assets-cliente/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

@@ -6,12 +6,26 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sitiohoy:validate": "node scripts/validate-sitiohoy.mjs",
+    "sitiohoy:qa": "node scripts/run-qa.mjs",
+    "sitiohoy:qa-report": "node scripts/generate-qa-report.mjs"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "@mercadopago/sdk-react": "^1.0.7",
+    "@supabase/ssr": "^0.10.2",
+    "@supabase/supabase-js": "^2.105.3",
+    "browser-image-compression": "^2.0.2",
+    "lucide-react": "^1.14.0",
+    "mercadopago": "^2.12.0",
     "next": "16.2.5",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "react-hook-form": "^7.75.0",
+    "resend": "^6.12.3",
+    "zod": "^4.4.3",
+    "zustand": "^5.0.13"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -20,6 +34,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.5",
+    "postgres": "^3.4.9",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
