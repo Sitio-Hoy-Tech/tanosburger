@@ -32,5 +32,7 @@
     "precio_max": 23000
   },
   "modulo_actual": 0,
-  "estado": "iniciando"
+  "estado": "iniciando",
+  "tenantId": "36a611e1-48f1-5661-ba44-dab0828e9b40",
+  "siteUrl": "tanosburger.vercel.app"
 }

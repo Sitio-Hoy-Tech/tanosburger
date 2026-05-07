@@ -102,10 +102,25 @@ export default function Footer() {
         </div>
 
         <div
-          className="mt-10 pt-6 border-t text-center text-xs"
+          className="mt-10 pt-6 border-t flex flex-col sm:flex-row items-center justify-between gap-3 text-xs"
           style={{ borderColor: 'var(--color-border)', color: 'var(--color-text-muted)' }}
         >
-          © {year} Tanos Burger. Todos los derechos reservados.
+          <span>© {year} Tanos Burger. Todos los derechos reservados.</span>
+          <a
+            href="https://sitiohoy.com.ar"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 opacity-50 hover:opacity-100 transition-opacity"
+          >
+            <span>Desarrollado por</span>
+            <Image
+              src="/logo-sitiohoy.png"
+              alt="SitioHoy"
+              width={72}
+              height={24}
+              className="h-5 w-auto object-contain"
+            />
+          </a>
         </div>
       </div>
     </footer>

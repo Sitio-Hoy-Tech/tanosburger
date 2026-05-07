@@ -96,7 +96,7 @@ export default function AddToCartButton({
 
       {/* Precio final + botón */}
       <div className="flex items-center gap-3">
-        <span className="text-2xl font-extrabold" style={{ color: 'var(--color-primary)', fontFamily: 'var(--font-display)' }}>
+        <span className="text-2xl font-extrabold" style={{ color: 'var(--color-primary-text)', fontFamily: 'var(--font-display)' }}>
           {formatPrice(price)}
         </span>
         <button

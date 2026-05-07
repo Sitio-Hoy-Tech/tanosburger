@@ -27,6 +27,21 @@ const schema = z.object({
   city: z.string().optional(),
   state: z.string().optional(),
   postalCode: z.string().optional(),
+}).superRefine((val, ctx) => {
+  if (val.deliveryType === 'delivery') {
+    if (!val.address || val.address.length < 5) {
+      ctx.addIssue({ code: 'custom', path: ['address'], message: 'Dirección requerida' })
+    }
+    if (!val.city || val.city.length < 2) {
+      ctx.addIssue({ code: 'custom', path: ['city'], message: 'Ciudad requerida' })
+    }
+    if (!val.state || val.state.length < 2) {
+      ctx.addIssue({ code: 'custom', path: ['state'], message: 'Provincia requerida' })
+    }
+    if (!val.postalCode || val.postalCode.length < 4) {
+      ctx.addIssue({ code: 'custom', path: ['postalCode'], message: 'Código postal requerido' })
+    }
+  }
 })
 
 type FormData = z.infer<typeof schema>
@@ -49,6 +64,7 @@ export default function CheckoutFlow() {
   const [couponInput, setCouponInput] = useState('')
   const [couponError, setCouponError] = useState('')
   const [couponLoading, setCouponLoading] = useState(false)
+  const [savedFormData, setSavedFormData] = useState<FormData | null>(null)
   const [orderId, setOrderId] = useState<string | null>(null)
   const [preferenceId, setPreferenceId] = useState<string | null>(null)
   const [mpPublicKey, setMpPublicKey] = useState<string | null>(null)
@@ -103,8 +119,8 @@ export default function CheckoutFlow() {
 
   async function onSubmitDatos(data: FormData) {
     trackEvent('checkout_started', { delivery_type: data.deliveryType, items: items.length, subtotal })
+    setSavedFormData(data)
     if (data.deliveryType === 'retiro') {
-      setStep('pago')
       await confirmOrder(data)
       return
     }
@@ -146,7 +162,8 @@ export default function CheckoutFlow() {
       setPreferenceId(pid)
       setMpPublicKey(pk)
       setStep('pago')
-    } catch {
+    } catch (e) {
+      console.error('confirmOrder error:', e)
       setError('Hubo un error al crear tu pedido. Intentá de nuevo.')
     } finally {
       setSubmitting(false)
@@ -298,10 +315,10 @@ export default function CheckoutFlow() {
                       <div>
                         <p className="font-semibold text-sm">{rate.serviceDescription || rate.service}</p>
                         <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
-                          {rate.days} días hábiles
+                          {rate.days ? `${rate.days} días hábiles` : 'Consultar plazo'}
                         </p>
                       </div>
-                      <span className="font-bold" style={{ color: 'var(--color-primary)' }}>
+                      <span className="font-bold" style={{ color: 'var(--color-primary-text)' }}>
                         {formatPrice(rate.totalPrice)}
                       </span>
                     </label>
@@ -320,15 +337,14 @@ export default function CheckoutFlow() {
                 </button>
                 <button
                   type="button"
-                  disabled={shippingRates.length > 0 && !selectedRate}
+                  disabled={(shippingRates.length > 0 && !selectedRate) || submitting}
                   onClick={async () => {
-                    // Necesitamos el form data — lo guardamos antes
-                    setStep('pago')
+                    if (savedFormData) await confirmOrder(savedFormData)
                   }}
                   className="flex-1 py-3 rounded-[var(--radius-md)] font-bold text-sm transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60"
                   style={{ backgroundColor: 'var(--color-secondary)', color: '#fff' }}
                 >
-                  Ir al pago
+                  {submitting ? 'Procesando...' : 'Ir al pago'}
                 </button>
               </div>
             </div>
@@ -440,7 +456,7 @@ export default function CheckoutFlow() {
               </div>
               <div className="flex justify-between font-bold text-base pt-1 border-t" style={{ borderColor: 'var(--color-border)' }}>
                 <span>Total</span>
-                <span style={{ color: 'var(--color-primary)' }}>{formatPrice(total)}</span>
+                <span style={{ color: 'var(--color-primary-text)' }}>{formatPrice(total)}</span>
               </div>
             </div>
           </div>

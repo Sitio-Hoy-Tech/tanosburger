@@ -1,11 +1,16 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { ShoppingBag } from 'lucide-react'
 import { useCartStore } from '@/store/cart'
 
 export default function CartButton() {
   const { openCart, getItemCount } = useCartStore()
-  const count = getItemCount()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => { setMounted(true) }, [])
+
+  const count = mounted ? getItemCount() : 0
 
   return (
     <button

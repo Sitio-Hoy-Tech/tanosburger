@@ -1,5 +1,8 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
+import { motion } from 'motion/react'
 
 interface ProductImage {
   url: string
@@ -60,7 +63,7 @@ function ProductCard({ product }: { product: Product }) {
           </h3>
         </Link>
         <div className="flex items-center justify-between mt-auto pt-2">
-          <span className="font-bold text-base sm:text-lg" style={{ color: 'var(--color-primary)' }}>
+          <span className="font-bold text-base sm:text-lg" style={{ color: 'var(--color-primary-text)' }}>
             {formatPrice(product.price)}
           </span>
           <Link
@@ -89,14 +92,22 @@ export default function FeaturedProducts({ products }: FeaturedProductsProps) {
           <Link
             href="/menu"
             className="text-sm font-semibold hover:underline transition-colors"
-            style={{ color: 'var(--color-primary)' }}
+            style={{ color: 'var(--color-primary-text)' }}
           >
             Ver todo →
           </Link>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-          {products.map((p) => (
-            <ProductCard key={p.id} product={p} />
+          {products.map((p, i) => (
+            <motion.div
+              key={p.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.4, delay: i * 0.08, ease: 'easeOut' }}
+            >
+              <ProductCard product={p} />
+            </motion.div>
           ))}
         </div>
       </div>

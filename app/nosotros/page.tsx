@@ -26,7 +26,7 @@ export default function NosotrosPage() {
         <div className="flex-1">
           <p
             className="text-sm font-semibold uppercase tracking-widest mb-3"
-            style={{ color: 'var(--color-primary)' }}
+            style={{ color: 'var(--color-primary-text)' }}
           >
             Nuestra historia
           </p>

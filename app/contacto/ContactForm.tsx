@@ -60,6 +60,11 @@ export default function ContactForm() {
       className="flex flex-col gap-5"
       noValidate
     >
+      {/* Honeypot: oculto para humanos, los bots lo llenan → descartado en el server */}
+      <div style={{ display: 'none' }} aria-hidden="true">
+        <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+      </div>
+
       <div className="flex flex-col gap-1">
         <label htmlFor="nombre" className="text-sm font-semibold">
           Nombre

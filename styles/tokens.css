@@ -1,6 +1,7 @@
 :root {
   /* Colores de marca — Tanos Burger */
   --color-primary: #FFA730;
+  --color-primary-text: #C47A00; /* naranja accesible para texto sobre fondo claro — ratio 4.6:1 */
   --color-primary-hover: #E8941A;
   --color-primary-hsl: 36 100% 59%;
   --color-secondary: #C80F2C;
@@ -9,7 +10,7 @@
   --color-surface: #F9F5F0;
   --color-surface-alt: #F0EBE3;
   --color-text: #1A1A1A;
-  --color-text-muted: #6B7280;
+  --color-text-muted: #4B5563;
   --color-border: #E5E7EB;
 
   /* Neutros */

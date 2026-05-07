@@ -225,7 +225,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           style={{ borderColor: 'var(--color-border)' }}
         >
           <div className="flex items-center justify-between gap-3">
-            <span className="text-xl font-extrabold" style={{ color: 'var(--color-primary)', fontFamily: 'var(--font-display)' }}>
+            <span className="text-xl font-extrabold" style={{ color: 'var(--color-primary-text)', fontFamily: 'var(--font-display)' }}>
               {formatPrice(Number(product.price))}
             </span>
             <AddToCartButton

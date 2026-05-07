@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { initMercadoPago, Payment } from '@mercadopago/sdk-react'
 
 interface Props {
@@ -11,30 +11,14 @@ interface Props {
   onError: (error: unknown) => void
 }
 
-function PaymentSkeleton() {
-  return (
-    <div className="flex flex-col gap-3 py-4">
-      <div className="skeleton h-12 rounded-[var(--radius-md)]" />
-      <div className="skeleton h-12 rounded-[var(--radius-md)]" />
-      <div className="skeleton h-12 rounded-[var(--radius-md)]" />
-    </div>
-  )
-}
-
 export default function PaymentBrick({ preferenceId, amount, mpPublicKey, onSuccess, onError }: Props) {
   const initialized = useRef(false)
-  const [ready, setReady] = useState(false)
 
   useEffect(() => {
     if (initialized.current) return
     initialized.current = true
     initMercadoPago(mpPublicKey, { locale: 'es-AR' })
-    // Schedule state update after mount to avoid synchronous setState in effect
-    const id = setTimeout(() => setReady(true), 0)
-    return () => clearTimeout(id)
   }, [mpPublicKey])
-
-  if (!ready) return <PaymentSkeleton />
 
   return (
     <Payment

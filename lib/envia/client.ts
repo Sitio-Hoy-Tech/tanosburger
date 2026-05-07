@@ -26,7 +26,9 @@ export const getShippingRates = async (
 ): Promise<ShippingRate[]> => {
   const config = await getTenantConfig()
 
-  if (!config.envia_access_token) return []
+  if (!config.envia_access_token) {
+    return []
+  }
 
   const origin = {
     name: config.origin_name ?? 'Tanos Burger',
@@ -68,10 +70,15 @@ export const getShippingRates = async (
       }),
     })
 
-    if (!res.ok) return []
+    if (!res.ok) {
+      const text = await res.text()
+      console.error('Envia API error:', res.status, text)
+      return []
+    }
     const data = await res.json()
     return data.data ?? []
-  } catch {
+  } catch (e) {
+    console.error('Envia fetch error:', e)
     return []
   }
 }

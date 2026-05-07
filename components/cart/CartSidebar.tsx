@@ -95,7 +95,7 @@ export default function CartSidebar() {
                     )}
                     <p
                       className="text-sm font-bold mt-1"
-                      style={{ color: 'var(--color-primary)' }}
+                      style={{ color: 'var(--color-primary-text)' }}
                     >
                       {formatPrice(item.price)}
                     </p>
@@ -159,7 +159,7 @@ export default function CartSidebar() {
               )}
               <div className="flex justify-between text-base font-bold pt-2 border-t" style={{ borderColor: 'var(--color-border)' }}>
                 <span>Total</span>
-                <span style={{ color: 'var(--color-primary)' }}>{formatPrice(total)}</span>
+                <span style={{ color: 'var(--color-primary-text)' }}>{formatPrice(total)}</span>
               </div>
               <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
                 El envío se calcula en el checkout

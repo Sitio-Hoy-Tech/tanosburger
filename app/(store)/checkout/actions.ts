@@ -81,7 +81,7 @@ export async function createOrder(data: {
 
   // Verificar precios server-side
   const productIds = rawItems.map((i) => i.productId)
-  const { data: dbProducts } = await supabase
+  const { data: dbProducts, error: dbError } = await supabase
     .from('products')
     .select('id, price, product_variants(id, price_modifier)')
     .eq('tenant_id', TENANT_ID)

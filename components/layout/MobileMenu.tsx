@@ -26,14 +26,15 @@ export default function MobileMenu({ links }: MobileMenuProps) {
       {open && (
         <>
           <div
-            className="fixed inset-0 bg-black/40 z-40"
+            className="fixed inset-0 bg-black/40 z-[60]"
             onClick={() => setOpen(false)}
             aria-hidden="true"
           />
           <nav
             role="dialog"
             aria-label="Menú de navegación"
-            className="fixed top-0 left-0 h-full w-72 bg-white z-50 flex flex-col shadow-xl"
+            className="fixed top-0 left-0 h-screen w-72 z-[70] flex flex-col shadow-xl border-r border-[var(--color-border)] bg-white"
+            style={{ backgroundColor: '#ffffff' }}
           >
             <div
               className="flex items-center justify-between px-5 py-4 border-b"
@@ -54,7 +55,7 @@ export default function MobileMenu({ links }: MobileMenuProps) {
                 <X size={20} />
               </button>
             </div>
-            <ul className="flex flex-col px-4 py-6 gap-1">
+            <ul className="flex flex-col px-4 py-6 gap-1 flex-1 bg-white">
               {links.map((link) => (
                 <li key={link.href}>
                   <Link

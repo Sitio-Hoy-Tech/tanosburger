@@ -70,7 +70,7 @@ export default function ProductCard({ product }: { product: ProductCardData }) {
         </Link>
 
         <div className="flex items-center justify-between mt-auto pt-2 gap-2">
-          <span className="font-bold text-base sm:text-lg shrink-0" style={{ color: 'var(--color-primary)' }}>
+          <span className="font-bold text-base sm:text-lg shrink-0" style={{ color: 'var(--color-primary-text)' }}>
             {formatPrice(product.price)}
           </span>
           {outOfStock ? (

@@ -72,7 +72,15 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 
   return (
     <html lang="es-AR" className={`${display.variable} ${body.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-[var(--color-bg)] text-[var(--color-text)]">
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          href="/hamburguesa-1.jpg"
+          fetchPriority="high"
+        />
+      </head>
+      <body className="min-h-full flex flex-col bg-[var(--color-bg)] text-[var(--color-text)]" suppressHydrationWarning>
         {umamiUrl && umamiId && (
           <script
             defer
